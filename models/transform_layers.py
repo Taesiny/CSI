@@ -99,7 +99,10 @@ class RandomResizedCropLayer(nn.Module):
         output = F.grid_sample(inputs, grid, padding_mode='reflection', **kwargs)
 
         if self.size is not None:
-            output = F.adaptive_avg_pool2d(output, self.size)
+
+            sz=(self.size[0],self.size[1])
+            # print('size=', sz)
+            output = F.adaptive_avg_pool2d(output, sz)
 
         return output
 
